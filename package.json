@@ -1,0 +1,23 @@
+{
+  "name": "hw10-oop-teamprofilegenerator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/r134x7/HW10-OOP-TeamProfileGenerator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/r134x7/HW10-OOP-TeamProfileGenerator/issues"
+  },
+  "homepage": "https://github.com/r134x7/HW10-OOP-TeamProfileGenerator#readme",
+  "dependencies": {
+    "inquirer": "^8.2.3",
+    "jest": "^28.0.2"
+  }
+}
