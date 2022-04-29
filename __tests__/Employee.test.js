@@ -1,35 +1,53 @@
 const Employee = require("../lib/Employee")
 
 describe("Employee", () => {
-    describe("getName", () => {
+    it("getName should return the name of the Employee", () => {
         const name = "testName";
+        const id = 1;
+        const email = "test@test.com"
         
-        const result = new Employee().getName(name);
+        const result = new Employee(name, id, email).getName();
 
-        expect(result).toEqual(name) 
+        expect(result).toEqual(name); // expect true
+
+        // need to make name Like This...
+        // must throw an error
     })
 
-    describe("getId", () => {
+    it("getId should return the ID number of the Employee", () => {
         const name = "testName";
-        
-        const result = new Employee().getName(name);
+        const id = 1;
+        const email = "test@test.com"
 
-        expect(result).toEqual(name) 
+        // need to force positive numbers
+        // must throw an error
+        
+        const result = new Employee(name, id, email).getId();
+
+        expect(result).toEqual(id); 
     })
 
-    describe("getEmail", () => {
+    it("getEmail should return the email of the Employee", () => {
         const name = "testName";
-        
-        const result = new Employee().getName(name);
+        const id = 1;
+        const email = "test@test.com"
 
-        expect(result).toEqual(name) 
+        // need to force email into lower case
+        // must throw an error
+
+        const result = new Employee(name, id, email).getEmail();
+
+        expect(result).toEqual(email) 
     })
 
-    describe("getRole", () => {
+    describe("getRole should return the role of the Employee", () => {
         const name = "testName";
+        const id = 1;
+        const email = "test@test.com"
+        const role = "Employee";
         
-        const result = new Employee().getName(name);
+        const result = new Employee(name, id, email).getRole();
 
-        expect(result).toEqual(name) 
+        expect(result).toEqual(role) 
     })
 });
