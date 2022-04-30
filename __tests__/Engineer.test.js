@@ -28,9 +28,9 @@ describe("Engineer", () => {
     it("Should return github username", () => {
         const github = "userName";
         
-        const result = new Engineer("test", 1, "test@", "userName");
+        const result = new Engineer("test", 1, "test@", "userName").getGithub();
         
-        expect(result.github).toEqual(github);
+        expect(result).toEqual(github);
     })
     
     it("getRole should return the role of the Engineer", () => {
