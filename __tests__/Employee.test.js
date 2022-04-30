@@ -27,6 +27,24 @@ describe("Employee", () => {
         expect(result).toEqual(id); 
     })
 
+    it("Entering 0 for Id will throw an error", () => {
+        const cb = () => new Employee("test", 0, "test").getId(); // 
+        
+        expect(cb).toThrow(); //
+    });
+
+    it("Entering a negative number for Id will throw an error", () => {
+        const cb = () => new Employee("test", -19, "test").getId(); // 
+        
+        expect(cb).toThrow(); //
+    });
+
+    it("Entering anything that is not a number type for Id will throw an error", () => {
+        const cb = () => new Employee("test", "one", "test").getId(); // 
+        
+        expect(cb).toThrow(); //
+    });
+
     it("getEmail should return the email of the Employee", () => {
         const name = "testName";
         const id = 1;
@@ -40,7 +58,7 @@ describe("Employee", () => {
         expect(result).toEqual(email) 
     })
 
-    describe("getRole should return the role of the Employee", () => {
+    it("getRole should return the role of the Employee", () => {
         const name = "testName";
         const id = 1;
         const email = "test@test.com"
