@@ -68,7 +68,7 @@ function makeManager() {
             makeIntern();
         } else {
             console.log("oops");
-            console.log(teamMembers);
+            generateHTML.generateTeamMembers(teamMembers);
         }
     })
 
@@ -77,83 +77,79 @@ function makeManager() {
     // .then((data) => writeToFile("parameter1", parameter2) // 
 }
 
-// function writeToFile(fileName, data) {
-
-    // fs.writeFile(fileName, data, (err) => err ? console.log(err) : console.log("HTML file generated.")) // if there is an error, an error is shown on the terminal, else the terminal says file was written successfully.
-// }
 
 function makeEngineer() {
-
+    
     inquirer // inquirer is called in the init function
-.prompt([ // prompt method to bring up questions for input
+    .prompt([ // prompt method to bring up questions for input
     {
-      type: 'input',
-      name: 'name',
-      message: questions[5],
+        type: 'input',
+        name: 'name',
+        message: questions[5],
     },
     {
-      type: 'input',
-      name: 'id',
-      message: questions[1],
+        type: 'input',
+        name: 'id',
+        message: questions[1],
     },
     {
-      type: 'input',
-      name: 'email',
+        type: 'input',
+        name: 'email',
       message: questions[2],
     },
     {
-      type: "input",
-      name: "username",
-      message: questions[6],
+        type: "input",
+        name: "username", // was mistakenly using this key when the key for github username was github, the key name changed once it was put through the Engineer class
+        message: questions[6],
     },
     {
-      type: "list",
-      name: "teamMember",
-      message: questions[4],
-      choices: ['Engineer', 'Intern', 'None, end selection.',],
+        type: "list",
+        name: "teamMember",
+        message: questions[4],
+        choices: ['Engineer', 'Intern', 'None, end selection.',],
     },
 ])
-    .then(function (data) {
-        teamMembers.push(new Engineer(data.name, data.id, data.email, data.username))
-        
-        if (data.teamMember === "Engineer"){
-            makeEngineer(); // recursion
-        } else if (data.teamMember === "Intern"){
-            makeIntern(); // go to
-        } else {
-            console.log("oops");
-            console.log(teamMembers);
-        }
-
-    })
+.then(function (data) {
+    teamMembers.push(new Engineer(data.name, data.id, data.email, data.username))
+    
+    if (data.teamMember === "Engineer"){
+        makeEngineer(); // recursion
+    } else if (data.teamMember === "Intern"){
+        makeIntern(); // go to
+    } else {
+        console.log("oops");
+        generateHTML.generateTeamMembers(teamMembers);
+    }
+    
+})
 }
 
 function makeIntern() {
-
+    
     inquirer // inquirer is called in the init function
-.prompt([ // prompt method to bring up questions for input
+    .prompt([ // prompt method to bring up questions for input
     {
-      type: 'input',
-      name: 'name',
-      message: questions[7],
+        type: 'input',
+        name: 'name',
+        message: questions[7],
     },
     {
-      type: 'input',
-      name: 'id',
-      message: questions[1],
+        type: 'input',
+        name: 'id',
+        message: questions[1],
     },
     {
-      type: 'input',
-      name: 'email',
-      message: questions[2],
+        type: 'input',
+        name: 'email',
+        message: questions[2],
     },
     {
-      type: "input",
-      name: "school",
-      message: questions[8],
+        type: "input",
+        name: "school",
+        message: questions[8],
     },
     {
-      type: "list",
+        type: "list",
       name: "teamMember",
       message: questions[4],
       choices: ['Engineer', 'Intern', 'None, end selection.',],
@@ -168,7 +164,7 @@ function makeIntern() {
             makeIntern(); // recursion
         } else {
             console.log("oops");
-            console.log(teamMembers);
+            generateHTML.generateTeamMembers(teamMembers);
         }
     })
 }
@@ -176,4 +172,9 @@ function makeIntern() {
 
 makeManager(); 
 
-// module.exports = {makeManager} // not used as of this time
+function writeToFile(fileName, data) {
+
+    fs.writeFile(fileName, data, (err) => err ? console.log(err) : console.log("HTML file generated.")) // if there is an error, an error is shown on the terminal, else the terminal says file was written successfully.
+}
+
+module.exports = {writeToFile} // not used as of this time
