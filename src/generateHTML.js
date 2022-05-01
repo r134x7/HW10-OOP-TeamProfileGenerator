@@ -9,7 +9,7 @@ function generateTeamMembers(data) {
 
     console.log(data);
 
-    const team = []
+    const team = [];
 
     // const team = data;
     // for (let i = 0; i < data.length; i++) {
@@ -41,11 +41,9 @@ function generateTeamMembers(data) {
         ${data[i]["id"]}
         ${data[i]["email"]}
         ${x}
-        ${y}
-        `)
+        ${y}`)
 
     }
-    
 
     // // console.log(team);
     // console.log("oops");
@@ -60,6 +58,7 @@ function generateTeamMembers(data) {
 }
 
 function generateHTML(data) {
+
     const x = `<html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -68,12 +67,24 @@ function generateHTML(data) {
         <title>Document</title>
     </head>
     <body>
-        ${data}
+    `
+
+    const y = `
     </body>
     </html>
     `
 
-    return writeToFile("index.html", x)
+    var t = ``;
+    
+    for (let i = 0; i < data.length; i++) {
+        t = t + `
+        ${data[i]}
+        `;
+    }
+
+    const z = x + t + y;
+    
+    return writeToFile("index.html", z)
 }
 
 function writeToFile(fileName, data) {
