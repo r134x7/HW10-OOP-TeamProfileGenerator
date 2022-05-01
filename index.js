@@ -4,8 +4,13 @@ const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
+const generateHTML = require("./src/generateHTML");
 
 // will need const for the lib files that take the data from the questions...
+
+// going to try making an empty array so that every class created gets pushed into the array allowing all classes created to be managed from one array.............
+
+const teamMembers = [];
 
 const questions = [
     "What is the name of the Team Manager?", 
@@ -29,9 +34,9 @@ function makeManager() {
       message: questions[0],
     },
     {
-      type: 'input',
-      name: 'id',
-      message: questions[1],
+        type: 'input',
+        name: 'id',
+        message: questions[1],
     },
     {
       type: 'input',
@@ -51,7 +56,11 @@ function makeManager() {
     },
 ])
     .then(function (data) {
-        new Manager(data.name, data.id, data.email, data.officeNumber)
+        // new Manager(data.name, data.id, data.email, data.officeNumber).getId() // ....................
+        // generateHTML.testManager(new Manager(data.name, data.id, data.email, data.officeNumber))
+        // generateHTML.genHTML(test)
+
+        teamMembers.push(new Manager(data.name, data.id, data.email, data.officeNumber))
 
         if (data.teamMember === "Engineer"){
             makeEngineer();
@@ -59,6 +68,7 @@ function makeManager() {
             makeIntern();
         } else {
             console.log("oops");
+            console.log(teamMembers);
         }
     })
 
@@ -104,7 +114,7 @@ function makeEngineer() {
     },
 ])
     .then(function (data) {
-        new Engineer(data.name, data.id, data.email, data.username)
+        teamMembers.push(new Engineer(data.name, data.id, data.email, data.username))
         
         if (data.teamMember === "Engineer"){
             makeEngineer(); // recursion
@@ -112,6 +122,7 @@ function makeEngineer() {
             makeIntern(); // go to
         } else {
             console.log("oops");
+            console.log(teamMembers);
         }
 
     })
@@ -149,7 +160,7 @@ function makeIntern() {
     },
 ])
 .then(function (data) {
-        new Intern(data.name, data.id, data.email, data.school)
+        teamMembers.push(new Intern(data.name, data.id, data.email, data.school))
 
         if (data.teamMember === "Engineer"){
             makeEngineer(); // go to
@@ -157,9 +168,12 @@ function makeIntern() {
             makeIntern(); // recursion
         } else {
             console.log("oops");
+            console.log(teamMembers);
         }
     })
 }
 
 
 makeManager(); 
+
+// module.exports = {makeManager} // not used as of this time
