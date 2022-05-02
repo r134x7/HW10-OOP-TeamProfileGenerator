@@ -1,14 +1,8 @@
 const inquirer = require('inquirer');
-const fs = require('fs');
-const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const generateHTML = require("./src/generateHTML");
-
-// will need const for the lib files that take the data from the questions...
-
-// going to try making an empty array so that every class created gets pushed into the array allowing all classes created to be managed from one array.............
 
 const teamMembers = [];
 
@@ -26,8 +20,8 @@ const questions = [
 
 function makeManager() {
 
-    inquirer // inquirer is called in the init function
-.prompt([ // prompt method to bring up questions for input
+    inquirer
+.prompt([
     {
       type: 'input',
       name: 'name',
@@ -56,9 +50,6 @@ function makeManager() {
     },
 ])
     .then(function (data) {
-        // new Manager(data.name, data.id, data.email, data.officeNumber).getId() // ....................
-        // generateHTML.testManager(new Manager(data.name, data.id, data.email, data.officeNumber))
-        // generateHTML.genHTML(test)
 
         teamMembers.push(new Manager(data.name, data.id, data.email, data.officeNumber))
 
@@ -71,17 +62,13 @@ function makeManager() {
             generateHTML.generateTeamMembers(teamMembers);
         }
     })
-
-    // I have to take the data and put it into the relevant class eg new Intern and then........ I take that input and create a profile and then I repeat the process...............
-    // and probably then the html file is produced probably...
-    // .then((data) => writeToFile("parameter1", parameter2) // 
 }
 
 
 function makeEngineer() {
     
-    inquirer // inquirer is called in the init function
-    .prompt([ // prompt method to bring up questions for input
+    inquirer
+    .prompt([
     {
         type: 'input',
         name: 'name',
@@ -126,8 +113,8 @@ function makeEngineer() {
 
 function makeIntern() {
     
-    inquirer // inquirer is called in the init function
-    .prompt([ // prompt method to bring up questions for input
+    inquirer
+    .prompt([
     {
         type: 'input',
         name: 'name',
@@ -169,12 +156,4 @@ function makeIntern() {
     })
 }
 
-
 makeManager(); 
-
-function writeToFile(fileName, data) {
-
-    fs.writeFile(fileName, data, (err) => err ? console.log(err) : console.log("HTML file generated.")) // if there is an error, an error is shown on the terminal, else the terminal says file was written successfully.
-}
-
-module.exports = {writeToFile} // not used as of this time

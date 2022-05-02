@@ -9,18 +9,12 @@ describe("Employee", () => {
         const result = new Employee(name, id, email).getName();
 
         expect(result).toEqual(name); // expect true
-
-        // need to make name Like This...
-        // must throw an error
     })
 
     it("getId should return the ID number of the Employee", () => {
         const name = "testName";
         const id = 1;
         const email = "test@test.com"
-
-        // need to force positive numbers
-        // must throw an error
         
         const result = new Employee(name, id, email).getId();
 
@@ -28,30 +22,27 @@ describe("Employee", () => {
     })
 
     it("Entering 0 for Id will throw an error", () => {
-        const cb = () => new Employee("test", 0, "test").getId(); // 
+        const cb = () => new Employee("test", 0, "test").getId();  
         
-        expect(cb).toThrow(); //
+        expect(cb).toThrow(); 
     });
 
     it("Entering a negative number for Id will throw an error", () => {
-        const cb = () => new Employee("test", -19, "test").getId(); // 
+        const cb = () => new Employee("test", -19, "test").getId();  
         
-        expect(cb).toThrow(); //
+        expect(cb).toThrow(); 
     });
 
     it("Entering anything that is not a number type for Id will throw an error", () => {
-        const cb = () => new Employee("test", "one", "test").getId(); // 
+        const cb = () => new Employee("test", "one", "test").getId();  
         
-        expect(cb).toThrow(); //
+        expect(cb).toThrow(); 
     });
 
     it("getEmail should return the email of the Employee", () => {
         const name = "testName";
         const id = 1;
         const email = "test@test.com"
-
-        // need to force email into lower case
-        // must throw an error
 
         const result = new Employee(name, id, email).getEmail();
 

@@ -28,7 +28,7 @@ function generateTeamMembers(data) {
             </tr>
             <tr>
             <td>
-            Email: ${data[i]["email"]}
+            Email: <a href="mailto:${data[i]["email"]}">${data[i]["email"]}</a>
             </td>
             </tr>
             <tr>
@@ -55,7 +55,7 @@ function generateTeamMembers(data) {
            </tr>
            <tr>
            <td>
-           Email: ${data[i]["email"]}
+           Email: <a href="mailto:${data[i]["email"]}">${data[i]["email"]}</a>
            </td>
            </tr>
            <tr>
@@ -82,7 +82,7 @@ function generateTeamMembers(data) {
            </tr>
            <tr>
            <td>
-           Email: ${data[i]["email"]}
+           Email: <a href="mailto:${data[i]["email"]}">${data[i]["email"]}</a>
            </td>
            </tr>
            <tr>
