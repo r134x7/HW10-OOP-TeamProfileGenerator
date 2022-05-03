@@ -4,7 +4,7 @@ const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const generateHTML = require("./src/generateHTML");
 
-const teamMembers = [];
+const teamMembers = []; // empty array for generated team members
 
 const questions = [
     "What is the name of the Team Manager?", 
@@ -16,9 +16,9 @@ const questions = [
     "What is the Engineer's GitHub username?",
     "What is the name of the Intern?",
     "What is the name of the Intern's School?"
-    ]; // 
+    ]; 
 
-function makeManager() {
+function makeManager() { // the first function that is called when node index.js is run
 
     inquirer
 .prompt([
@@ -51,15 +51,14 @@ function makeManager() {
 ])
     .then(function (data) {
 
-        teamMembers.push(new Manager(data.name, data.id, data.email, data.officeNumber))
+        teamMembers.push(new Manager(data.name, data.id, data.email, data.officeNumber)) // pushes the class into the empty array
 
-        if (data.teamMember === "Engineer"){
+        if (data.teamMember === "Engineer"){ // if you chose to add an engineer
             makeEngineer();
-        } else if (data.teamMember === "Intern"){
+        } else if (data.teamMember === "Intern"){ // if you chose to add an intern
             makeIntern();
         } else {
-            console.log("oops");
-            generateHTML.generateTeamMembers(teamMembers);
+            generateHTML.generateTeamMembers(teamMembers); // finish and generate html
         }
     })
 }
@@ -97,15 +96,14 @@ function makeEngineer() {
     },
 ])
 .then(function (data) {
-    teamMembers.push(new Engineer(data.name, data.id, data.email, data.username))
+    teamMembers.push(new Engineer(data.name, data.id, data.email, data.username)) // pushes the class into the empty array
     
-    if (data.teamMember === "Engineer"){
+    if (data.teamMember === "Engineer"){ // if wanting to add another engineer
         makeEngineer(); // recursion
-    } else if (data.teamMember === "Intern"){
+    } else if (data.teamMember === "Intern"){ // if wanting to add an intern
         makeIntern(); // go to
     } else {
-        console.log("oops");
-        generateHTML.generateTeamMembers(teamMembers);
+        generateHTML.generateTeamMembers(teamMembers); // finish and generate html
     }
     
 })
@@ -143,15 +141,14 @@ function makeIntern() {
     },
 ])
 .then(function (data) {
-        teamMembers.push(new Intern(data.name, data.id, data.email, data.school))
+        teamMembers.push(new Intern(data.name, data.id, data.email, data.school)) // pushes the class into the empty array
 
-        if (data.teamMember === "Engineer"){
+        if (data.teamMember === "Engineer"){ // if wanting to add an engineer
             makeEngineer(); // go to
-        } else if (data.teamMember === "Intern"){
+        } else if (data.teamMember === "Intern"){ // if wanting to add another intern
             makeIntern(); // recursion
         } else {
-            console.log("oops");
-            generateHTML.generateTeamMembers(teamMembers);
+            generateHTML.generateTeamMembers(teamMembers); // finish and generate html
         }
     })
 }

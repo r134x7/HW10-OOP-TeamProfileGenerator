@@ -1,7 +1,38 @@
+/* source for understanding how to put in unicode text in html: https://www.youtube.com/watch?v=hd78dAz3H4w&t=453s */
+
+#gridLayout { /* source for understanding grid template columns: https://www.youtube.com/watch?v=RSIclWvNTdQ */
+    display: grid;
+    grid-template-columns: 33% 33% auto;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.id {
+    border: solid 2px;
+    padding: 4px;
+    margin-bottom: auto;
+    margin-top: 10px;
+    background-color: honeydew;
+}
+
 h1 {
     color: white;
     background-color: orangered;
     text-align: center;
     padding: 10px;
     font-family: sans-serif;
+}
+
+h3 {
+    margin: 0;
+    color: white;
+    background-color: #00a5ff;;
+    font-family: sans-serif;
+    padding: 8px;
+
+}
+
+td {
+    border: solid 1px;
+    border-color: black;
 }

@@ -5,7 +5,7 @@ const Manager = require('../lib/Manager');
 
 function generateTeamMembers(data) {
 
-    const team = [];
+    const team = []; // empty array to put member profiles into
 
     for (let i = 0; i < data.length; i++) {
         data[i]["name"]
@@ -14,12 +14,12 @@ function generateTeamMembers(data) {
         
         if (data[i]["constructor"]["name"] === "Manager"){ // we get the class name to find the role
            var x = data[i]["officeNumber"];
-           var y = new Manager().getRole();
+           var y = new Manager().getRole(); // gets the returned role of the class
 
             team.push(`
-            <div>
-            ${data[i]["name"]} <br>
-            ${y} <br>
+            <div class="id">
+            <h3>${data[i]["name"]}</h3>
+            <h3> &#x1F469&#x200D&#x1F4BC ${y}</h3><br>
             <table>
             <tr>
             <td>
@@ -39,14 +39,14 @@ function generateTeamMembers(data) {
             </table>
             </div>`)
 
-        } else if (data[i]["constructor"]["name"] === "Engineer"){
+        } else if (data[i]["constructor"]["name"] === "Engineer"){ // we get the class name to find the role
            var x = data[i]["github"];
-           var y = new Engineer().getRole();
+           var y = new Engineer().getRole(); // gets the returned role of the class
 
            team.push(`
-           <div>
-           ${data[i]["name"]} <br>
-           ${y} <br>
+           <div class="id">
+           <h3>${data[i]["name"]}</h3>
+           <h3> &#x1F469&#x200D&#x1F4BB ${y}</h3><br>
            <table>
            <tr>
            <td>
@@ -60,20 +60,20 @@ function generateTeamMembers(data) {
            </tr>
            <tr>
            <td>
-           GitHub: ${x}
+           GitHub: <a href="https://github.com/${x}">${x}</a>
            </td>
            </tr>
            </table>
            </div>`)
 
-        } else if (data[i]["constructor"]["name"] === "Intern"){
+        } else if (data[i]["constructor"]["name"] === "Intern"){ // we get the class name to find the role
            var x = data[i]["school"];
-           var y = new Intern().getRole();
+           var y = new Intern().getRole(); // gets the returned role of the class
 
            team.push(`
-           <div>
-           ${data[i]["name"]} <br>
-           ${y} <br>
+           <div class="id">
+           <h3>${data[i]["name"]}</h3>
+           <h3> &#x1F469&#x200D&#x1F393 ${y}</h3><br>
            <table>
            <tr>
            <td>
@@ -101,7 +101,7 @@ function generateTeamMembers(data) {
 
 function generateHTML(data) {
 
-    const x = `<html lang="en">
+    const top = `<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -113,27 +113,29 @@ function generateHTML(data) {
     <header>
         <h1>My Team</h1>
     </header>
+    <div id="gridLayout">
     `
 
-    const y = `
+    const bottom = `
+    </div>
     </body>
     </html>
     `
 
-    var t = ``; // need a mutable state
+    var middle = ``; // need a mutable state
     
     for (let i = 0; i < data.length; i++) { // this for loop is to prevent the issue of commas from the array indexes ending up in the html file
-        t = t + `
+        middle = middle + `
         ${data[i]}
-        `; // like i++
+        `; // adding like i++ increments
     }
 
-    const z = x + t + y; // concatenate
+    const z = top + middle + bottom; // concatenate
     
     return writeToFile("./dist/index.html", z)
 }
 
-function writeToFile(fileName, data) {
+function writeToFile(fileName, data) { // will be using fs here to generate the html file
 
     fs.writeFile(fileName, data, (err) => err ? console.log(err) : console.log("HTML file generated.")) // if there is an error, an error is shown on the terminal, else the terminal says file was written successfully.
 }
